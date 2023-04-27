@@ -1,5 +1,9 @@
 #include "mbed.h"
 
+// It is possible to see multiple lines printed even when the Joystick is pressed once. This can happen if the Joystick input signal is noisy or if the button bounces when it is pushed, causing multiple interrupts to be triggered. Each interrupt will call its corresponding callback function and print a message to the console, resulting in multiple lines of output.
+
+// One software solution to this problem is to implement a debouncing in the callback functions. Debouncing is the process of removing noise or glitches from a signal by filtering or delaying the signal for a specified time. In the case of a Joystick button, we can add a short delay to the callback function to ensure that the button has settled before processing the input.
+
 // Define InterruptIn pins for Joystick
 InterruptIn up(p15);
 InterruptIn down(p12);
